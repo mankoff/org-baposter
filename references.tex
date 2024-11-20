@@ -1,0 +1,76 @@
+
+%% \usepackage[backend=bibtex,style=numeric]{biblatex} % Load biblatex
+%% \addbibresource{library.bib} % Replace with your .bib file name
+
+\renewcommand*{\bibfont}{\footnotesize} % footnotesize scriptsize tiny
+
+%\usepackage[bibstyle=authoryear,giveninits=true,maxbibnames=99]{biblatex}
+\usepackage[hyperref=true,
+            %sorting=none, 
+            sorting=nyt,
+            %style=numeric, 
+            date=year,
+            style=authoryear,
+            %defernumbers=true, 
+            firstinits=true, 
+            uniquename=false,
+            uniquelist=false,
+            %uniquelist=minyear,
+            maxnames=99, 
+            maxcitenames=1]{biblatex}
+\renewbibmacro{in:}{}
+
+\addbibresource{library.bib}
+%% addbibresource{/path/to/library.bib}
+%% biber <texfile><.NOEXT> --output_format bibtex
+%% biber --output_format=bibtex --output_resolve ${fn}.bcf
+
+% Don't print URL if DOI field exists
+\DeclareFieldFormat{url}{%
+  \iffieldundef{doi}{%
+    \mkbibacro{URL}\addcolon\space\url{#1}%
+  }{%
+  }%
+}
+% Don't print URL if DOI field exists
+\DeclareFieldFormat{urldate}{%
+  \iffieldundef{doi}{%
+    \mkbibparens{\bibstring{urlseen}\space#1}%
+  }{%
+  }%
+}
+
+\renewbibmacro*{journal+issuetitle}{%
+  \usebibmacro{journal}%
+  \setunit*{\addspace}%
+  \iffieldundef{series}
+               {}
+               {\newunit
+                 \printfield{series}%
+                 \setunit{\addspace}}%
+               \usebibmacro{issue+date}%
+               \setunit{\addcomma\space}%
+               \usebibmacro{volume+number+eid}%
+               \setunit{\addcolon\space}%
+               \usebibmacro{issue}%
+               \newunit}
+
+\newbibmacro*{issue+date}{%
+  \iffieldundef{issue}
+               {. \usebibmacro{date}}
+               {\printfield{issue}%
+                 \setunit*{\addspace}%
+                 \usebibmacro{date}}%
+               \newunit}
+
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+  \setunit*{\addnbspace}% NEW (optional); there's also #+LATEX_HEADER_EXTRA: \addnbthinspace
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+\DeclareFieldFormat{pages}{#1}
+
+\setlength{\bibitemsep}{0.33\baselineskip} % Add space between items
+\setlength{\bibhang}{0pt} % Remove indentation

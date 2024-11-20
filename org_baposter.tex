@@ -1,0 +1,85 @@
+\documentclass[a0paper,landscape]{baposter}
+
+\usepackage{multicol} % For handling multiple columns
+\usepackage{lipsum} % For sample text
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{hyperref}
+
+\usepackage{enumitem}
+\setlist{nosep} % Removes extra spacing between items and around the list
+
+\usepackage[final,protrusion=true,expansion=true]{microtype} % nice font tweaks
+\usepackage[small,compact, sf]{titlesec} % reduce space
+%\usepackage[margin=1in]{geometry} % set page margins automatically 
+%% \usepackage[parfill]{parskip}  % paragraphs have vert space not indent
+\usepackage[sc]{mathpazo} % Palatino font
+
+\include{references.tex}
+
+\begin{document}
+
+\definecolor{NASAblue}{rgb}{0.04,0.24,0.57} % NASA meatball blue
+\definecolor{NASAred}{rgb}{0.99,0.24,0.13} % NASA meatball red
+
+\begin{poster}%
+  % Poster Options
+  {
+    columns=10,
+    % Show grid to help with alignment
+    grid=true,
+    % Column spacing
+    colspacing=1em,
+    % Color style
+    bgColorOne=white,
+    bgColorTwo=black,
+    borderColor=NASAred,
+    headerColorOne=NASAblue,
+    headerColorTwo=NASAblue,
+    headerFontColor=white,
+    boxColorOne=green,
+    boxColorTwo=cyan,
+    % Format of textbox
+    textborder=faded,
+    % Format of text header
+    eyecatcher=true,
+    headerborder=closed,
+    headerheight=0.13\textheight,
+    %  textfont=\sc, An example of changing the text font
+    headershape=roundedright,
+    headershade=shadelr,
+    headerfont=\Large\bf\textsc, %Sans Serif
+    textfont={\setlength{\parindent}{0em}\setlength{\parskip}{1ex}},
+    boxshade=plain,
+    %  background=shade-tb,
+    background=plain,
+    linewidth=2pt
+  }
+  { % top left graphic
+    \includegraphics[height=3cm]{fig/NASA.png}
+    %% \begin{minipage}{0.1\textwidth}
+    %%   \centering 
+    %%   \Large Poster \#\\
+    %%   Some Number Or Figure
+    %% \end{minipage}
+  }
+  { % title
+    \bfseries{Title of\\the Poster}
+  }
+  { % authors
+  \begin{minipage}[t]{0.9\textwidth}
+    \centering {\normalsize
+      \renewcommand{\baselinestretch}{1.0}\selectfont
+      \vspace{1ex}
+      Some A. Author, Another B. Person
+    }
+  \end{minipage}
+  }
+  { % top right graphic
+    \includegraphics[height=3cm]{fig/NASA.png}
+    %% \includegraphics[height=3cm]{fig/modelE.png}
+  }
+
+
+  
